@@ -1,11 +1,10 @@
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
-import { Alert, StyleSheet, Text, TextInput, View } from "react-native";
+import { StyleSheet, Platform, Text, TextInput, View } from "react-native";
 import { Button, Card } from "react-native-elements";
 import { TabBar } from "../components/CardTabs";
 import CustomerList from "../components/CustomerList";
-import { Navbar } from "../components/Navbar";
-import { throwStatement } from "@babel/types";
+import Navbar from "../components/Navbar";
 
 export default class HomeScreen extends React.Component {
   constructor(props) {
@@ -16,6 +15,7 @@ export default class HomeScreen extends React.Component {
   componentDidMount() {
     this.fetchData();
   }
+
   fetchData() {
     return fetch("http://project-tracker.texol.webfactional.com/api.json")
       .then(response => response.json())
@@ -33,7 +33,6 @@ export default class HomeScreen extends React.Component {
       })
       .catch(error => {
         this.setState({
-          isLoading: false,
           dataSource: []
         });
         console.error(error);
